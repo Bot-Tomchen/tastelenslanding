@@ -1,31 +1,9 @@
 "use client";
+
 export default function Home() {
   return (
     <main>
-      <nav className="navbar">
-        <div className="logo">
-          <svg width="280" height="80" viewBox="0 0 560 160">
-            <defs>
-              <style>{`@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');`}</style>
-            </defs>
-            <g transform="translate(10,10) scale(0.5)">
-              <rect x="24" y="24" width="64" height="64" rx="6" className="line"/>
-              <rect x="44" y="44" width="24" height="24" rx="4" className="fill"/>
-              <rect x="168" y="24" width="64" height="64" rx="6" className="line"/>
-              <rect x="188" y="44" width="24" height="24" rx="4" className="fill"/>
-              <rect x="24" y="168" width="64" height="64" rx="6" className="line"/>
-              <rect x="44" y="188" width="24" height="24" rx="4" className="fill"/>
-            </g>
-            <text x="150" y="90" fontFamily="Pacifico" fontSize="48">TasteLens</text>
-          </svg>
-        </div>
-        <div className="nav-links">
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#testimonials">Testimonials</a>
-        </div>
-      </nav>
-
+      {/* Hero Section */}
       <div className="hero">
         <h1>AI-Powered<br />Visual Menu<br />Experience</h1>
         <p className="subtitle">Transform text menus into visual dining experiences instantly</p>
@@ -96,10 +74,14 @@ export default function Home() {
       <div className="cta-section">
         <h2>Turn your menu visual in minutes</h2>
         <div className="app-buttons">
-          <button onClick={() => window.location.href='/upload'} className="app-button">
-            🚀 Get Started Free
-          </button>
-          <a href="mailto:hello@tastelens.com" className="app-button" style={{ background: "transparent", border: "2px solid white", color: "white" }}>📧 Contact Us</a>
+          <a href="/upload" className="app-button">🚀 Get Started Free</a>
+          <a
+            href="mailto:hello@tastelens.com"
+            className="app-button"
+            style={{ background: "transparent", border: "2px solid white", color: "white" }}
+          >
+            📧 Contact Us
+          </a>
         </div>
       </div>
     </main>
