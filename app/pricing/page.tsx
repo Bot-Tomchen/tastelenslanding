@@ -3,15 +3,44 @@
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
 
+// ✅ Updated pricing tiers
 const tiers = [
-  { name: 'Starter', price: '$0', features: ['10 menu items', 'Basic QR page', 'Community support'] },
-  { name: 'Pro', price: '$29/mo', features: ['Unlimited items', 'Branding controls', 'Priority support'] },
-  { name: 'Business', price: 'Contact', features: ['Multi-location', 'Team accounts', 'SLA & onboarding'] }
+  {
+    name: "Basic QR",
+    tierKey: "basic_qr",
+    price: "$29/mo",
+    features: [
+      "Simple QR menu access",
+      "Up to 100 menu photos",
+      "Basic AI menu vision",
+    ],
+  },
+  {
+    name: "QR Stickers Kit",
+    tierKey: "qr_stickers",
+    price: "$49/mo",
+    features: [
+      "Everything in Basic",
+      "Physical QR sticker pack",
+      "Priority onboarding",
+      "Restaurant branding support",
+    ],
+  },
+  {
+    name: "3D Table Stand Kit",
+    tierKey: "table_stand",
+    price: "$69/mo",
+    features: [
+      "Everything in Stickers",
+      "Premium 3D-printed table stands",
+      "Custom engraved restaurant logo",
+      "VIP support line",
+    ],
+  },
 ];
 
 export default function Pricing() {
-
-  // Track page visit
+  // ✅ Track page visit
   useEffect(() => {
     track("visit_pricing_page");
   }, []);
@@ -19,41 +48,31 @@ export default function Pricing() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
       <h2 className="text-4xl font-bold">Pricing</h2>
-      <p className="mt-2 text-gray-600">Simple plans to get you started. Upgrade as you grow.</p>
+      <p className="mt-2 text-gray-600">
+        Choose the plan that fits your restaurant.
+      </p>
 
       <div className="mt-10 grid md:grid-cols-3 gap-6">
-        {tiers.map(t => (
-          <div key={t.name} className="rounded-2xl border p-6">
+        {tiers.map((t) => (
+          <div key={t.name} className="rounded-2xl border p-6 bg-white shadow-sm">
             <h3 className="text-xl font-semibold">{t.name}</h3>
             <p className="mt-2 text-3xl font-bold">{t.price}</p>
 
             <ul className="mt-4 space-y-2 text-sm text-gray-600">
-              {t.features.map(f => <li key={f}>• {f}</li>)}
+              {t.features.map((f) => (
+                <li key={f}>• {f}</li>
+              ))}
             </ul>
 
-            {/* Button logic per tier */}
-            {t.name !== "Business" ? (
-              <button
-                className="mt-6 inline-block px-4 py-2 rounded-lg bg-black text-white"
-                onClick={() => {
-                  track("pricing_click_get_started", { tier: t.name });
-                  window.location.href = "/upload";
-                }}
-              >
-                Get started
-              </button>
-            ) : (
-              <button
-                className="mt-6 inline-block px-4 py-2 rounded-lg border border-black text-black"
-                onClick={() => {
-                  track("pricing_click_contact");
-                  window.location.href = "mailto:hello@tastelens.com";
-                }}
-              >
-                Contact us
-              </button>
-            )}
-
+            <button
+              className="mt-6 w-full px-4 py-2 rounded-lg bg-black text-white"
+              onClick={() => {
+                track("pricing_click", { tier: t.tierKey });
+                window.location.href = "/upload";
+              }}
+            >
+              Get Started
+            </button>
           </div>
         ))}
       </div>
