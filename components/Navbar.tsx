@@ -1,38 +1,51 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/pricing", label: "Pricing" },
+  ];
+
   return (
-    <nav className="navbar flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
-      <Link href="/" className="text-2xl font-bold text-gray-900">
-        TasteLens
-      </Link>
-
-      <div className="flex gap-6 text-gray-600 font-medium items-center">
-        <Link href="/#features" className="hover:text-orange-500 transition">
-          Features
-        </Link>
-        <Link href="/#how-it-works" className="hover:text-orange-500 transition">
-          How It Works
-        </Link>
-        <Link href="/#testimonials" className="hover:text-orange-500 transition">
-          Testimonials
+    <header className="w-full fixed top-0 left-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-2xl font-bold tracking-tight">TasteLens</span>
         </Link>
 
-        {/* ✅ Pricing */}
-        <Link href="/pricing" className="hover:text-orange-500 transition">
-          Pricing
-        </Link>
+        {/* Nav links */}
+        <div className="flex items-center gap-8 text-sm font-medium">
 
-        {/* ✅ Upload */}
-        <Link
-          href="/upload"
-          className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition"
-        >
-          Upload Menu
-        </Link>
-      </div>
-    </nav>
-  )
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`transition ${
+                pathname === l.href
+                  ? "text-black font-semibold"
+                  : "text-gray-600 hover:text-black"
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+
+          {/* CTA Button */}
+          <Link
+            href="/upload"
+            className="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-900 transition"
+          >
+            Get Started Now
+          </Link>
+        </div>
+      </nav>
+    </header>
+  );
 }
