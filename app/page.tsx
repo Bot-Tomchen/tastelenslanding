@@ -1,6 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
+import { track } from "@vercel/analytics";
+
 export default function Home() {
+  // Track home page visit
+  useEffect(() => {
+    track("visit_home_page");
+  }, []);
+
   return (
     <main>
       {/* Hero Section */}
@@ -74,11 +82,22 @@ export default function Home() {
       <div className="cta-section">
         <h2>Turn your menu visual in minutes</h2>
         <div className="app-buttons">
-          <a href="/upload" className="app-button">🚀 Get Started Free</a>
+
+          <button
+            className="app-button"
+            onClick={() => {
+              track("click_get_started");
+              window.location.href = "/upload";
+            }}
+          >
+            🚀 Get Started Free
+          </button>
+
           <a
             href="mailto:hello@tastelens.com"
             className="app-button"
             style={{ background: "transparent", border: "2px solid white", color: "white" }}
+            onClick={() => track("click_contact")}
           >
             📧 Contact Us
           </a>
