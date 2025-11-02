@@ -70,7 +70,6 @@ export default function Home() {
       {/* Testimonials */}
       <div id="testimonials" className="testimonials">
         <h2 className="feature-title">Loved by diners & restaurants</h2>
-
         <div className="testimonial-grid">
           <div className="testimonial-card"><div className="avatar"></div><p>Instant visual menus change everything.</p></div>
           <div className="testimonial-card"><div className="avatar"></div><p>Way easier to order food now.</p></div>
@@ -86,11 +85,11 @@ export default function Home() {
           <button
             className="app-button"
             onClick={() => {
-              track("click_get_started");
+              track("click_get_started_now");
               window.location.href = "/upload";
             }}
           >
-            🚀 Get Started Free
+            🚀 Get Started Now
           </button>
 
           <a
